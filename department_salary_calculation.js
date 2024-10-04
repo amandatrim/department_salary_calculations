@@ -101,3 +101,28 @@ const company = {
         }
     ]
 };
+
+// Create recursive function to calculate department salary
+/**
+ * Recursively calculates the total salary expenditure for a department, including subordinates' salaries.
+ * 
+ * @param {Object} department - The department object containing employees and their subordinates.
+ * @returns {number} - The total salary expenditure for the department.
+ */
+function calculateDepartmentSalary(department) {
+    let totalSalary = 0;
+
+    // Loop through each employee in the department
+    department.employees.forEach(employee => {
+        totalSalary += employee.salary; // Add the employee's salary to the total
+        
+        // Recursively add the salaries of all subordinates
+        if (employee.subordinates.length > 0) {
+            employee.subordinates.forEach(subordinate => {
+                totalSalary += calculateEmployeeSalary(subordinate); // Helper function to handle subordinates
+            });
+        }
+    });
+
+    return totalSalary;
+}
