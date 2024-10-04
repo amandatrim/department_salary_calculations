@@ -126,3 +126,21 @@ function calculateDepartmentSalary(department) {
 
     return totalSalary;
 }
+
+// Calculate total salary for all departments in the company
+/**
+ * Calculates the total salary expenditure for all departments in the company.
+ * 
+ * @param {Object} company - The company object containing multiple departments.
+ * @returns {number} - The total salary expenditure for the entire company.
+ */
+function calculateCompanySalary(company) {
+    let totalCompanySalary = 0;
+
+    // Iterate over each department in the company
+    company.departments.forEach(department => {
+        totalCompanySalary += calculateDepartmentSalary(department); // Add the department's total salary
+    });
+
+    return totalCompanySalary;
+}
